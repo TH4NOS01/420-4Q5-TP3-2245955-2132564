@@ -1,0 +1,44 @@
+services:
+
+  # Reverse proxy - reçoit le trafic HTTP
+  reverse-proxy:
+    image: nginx:alpine
+    ports:
+      - "8080:80"
+    volumes:
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - frontend
+    depends_on:
+      - app
+
+  # WordPress - le site web
+  app:
+    image: wordpress:latest
+    env_file:
+      - .env
+    volumes:
+      - wp_data:/var/www/html
+    networks:
+      - frontend
+      - backend
+    depends_on:
+      - db
+
+  # MySQL - la base de données
+  db:
+    image: mysql:8.0
+    env_file:
+      - .env
+    volumes:
+      - db_data:/var/lib/mysql
+    networks:
+      - backend
+
+volumes:
+  wp_data:
+  db_data:
+
+networks:
+  frontend:
+  backend:
