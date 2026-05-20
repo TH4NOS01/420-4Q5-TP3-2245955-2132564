@@ -17,6 +17,8 @@ services:
     image: wordpress:latest
     env_file:
       - .env
+    ports:
+      - "8081:80" 
     volumes:
       - wp_data:/var/www/html
     networks:
