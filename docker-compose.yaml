@@ -37,10 +37,12 @@ services:
     networks:
       - backend
 
+#Les variables de nos volumes
 volumes:
   wp_data:
   db_data:
 
+#Les variables de notre Network
 networks:
   frontend:
   backend:
