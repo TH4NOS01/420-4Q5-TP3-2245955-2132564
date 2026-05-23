@@ -37,6 +37,17 @@ services:
     networks:
       - backend
 
+  #Maintenance - sauvegarde
+  maintenance:
+    build: ./maintenance
+    env_file:
+      - .env
+    volumes:
+      - wp_data:/app/wp_data:ro
+      - db_data:/app/db_data:ro
+    networks:
+      - backend
+
 #Les variables de nos volumes
 volumes:
   wp_data:
