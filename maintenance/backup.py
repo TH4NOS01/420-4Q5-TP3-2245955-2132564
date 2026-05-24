@@ -56,4 +56,4 @@ def backup():
 while True:
     backup()
     print("Attente 60 secondes")
-    time.sleep(60)
+    time.sleep(3600)
