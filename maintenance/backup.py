@@ -30,8 +30,10 @@ def backup():
 
 
     print(f"Envoi vers VM2 ({BACKUP_HOST})")
-    resultat = subprocess.run(["rsync", "-avz","-e", "ssh -o StrictHostKeyChecking=no",
-                    chemin_archive,f"{BACKUP_USER}@{BACKUP_HOST}:{BACKUP_PATH}"                 
+    resultat = subprocess.run([ "rsync", "-avz",
+    "-e", "ssh -i /root/.ssh/id_ed25519 -o StrictHostKeyChecking=no",
+    chemin_archive,
+    f"{BACKUP_USER}@{BACKUP_HOST}:{BACKUP_PATH}"
     ])
     if resultat.returncode != 0:
         print("ERREUR: transfert SSH/rsync échoué")

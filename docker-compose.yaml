@@ -45,6 +45,7 @@ services:
     volumes:
       - wp_data:/app/wp_data:ro
       - db_data:/app/db_data:ro
+      - /root/.ssh/maintenance:/root/.ssh:ro
     networks:
       - backend
 
